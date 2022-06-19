@@ -1,21 +1,22 @@
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < 20; i++) {
     let uname = `Baggy-${i + 1}`
     let surname = `Mard-${i + 1}`
-    let url = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+    let url = "https://i.pinimg.com/736x/c9/e3/e8/c9e3e810a8066b885ca4e882460785fa.jpg"
     let member = JSON.stringify({ name: uname, surname: surname, pfp: url })
     localStorage.setItem(`member${i + 1}`, member)
 }
-for (let i = 0; i < 15; i++) {
-    viewDiv(i+1)
+for (let i = 0; i < 20; i++) {
+    viewDiv(i + 1)
 }
-for (let i = 0; i < 6; i++) {
-    $(`#i1${i}`).addClass("invisible")
+for (let i = 11; i < 21; i++) {
+    $(`#i${i}`).removeClass("visible")
+    $(`#i${i}`).addClass("invisible")
 }
 function viewDiv(a) {
-    debugger;
     let member = JSON.parse(localStorage.getItem(`member${a}`))
     let div = document.createElement("div")
     div.classList.add("member");
+    div.classList.add("visible");
     div.setAttribute("id", `i${a}`)
     let img = document.createElement("img")
     img.setAttribute("src", member.pfp);
@@ -28,19 +29,24 @@ function viewDiv(a) {
     div.appendChild(p2)
     document.querySelector("#main").appendChild(div)
 }
-$(document).scroll(function () {
-    addclass(1000, "#i10")
-    addclass(1150, "#i11")
-    addclass(1300, "#i12")
-    addclass(1450, "#i13")
-    addclass(1600, "#i14")
-    addclass(1750, "#i15")
-});
-function addclass(a,b) {
-    if ($(document).scrollTop() > a) {
-        $(b).addClass("visible")
-    }
-    else{
-        $(b).addClass("invisible")
+let membOverallCount = 0
+for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.getItem(`member${i}`) != null) {
+        membOverallCount++
     }
 }
+let divI = 11
+let prevScroll = 0
+// $(document).scroll(function () {
+//     if ($(document).scrollTop() != 0) {
+//         if (prevScroll != $(document).scrollTop) {
+//             for (let i = 0; i < 2; i++) {
+//                 $(`#i${divI}`).addClass("visible")
+//                 $(`#i${divI}`).removeClass("invisible")
+//                 divI++
+//             }
+//         }
+//     }
+
+// });
+
